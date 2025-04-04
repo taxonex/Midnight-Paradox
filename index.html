@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Midnight Paradox – Zombie Survival Horror Game</title>
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
     <meta name="google-site-verification" content="_OqWWAtSK5MjtppE4FLIZ7MgdieRhl6wdH7cOTg-wq8" />
@@ -10,17 +10,9 @@
     <meta name="keywords" content="Midnight Paradox, best mobile game, action game, adventure zombie game, free game, Android game">
     <meta name="AltInfo" content="Indie game dev">
 
-        <!-- Canonical URL (Avoids duplicate content issues) -->
-        <link rel="canonical" href="https://midnight-paradox.vercel.app/">
+    <link rel="canonical" href="https://midnight-paradox.vercel.app/">
+    <meta name="robots" content="index, follow">
 
-        <!-- Viewport for Mobile Optimization -->
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-        <!-- Robots Meta Tag (Controls indexing) -->
-        <meta name="robots" content="index, follow">
-
-
-    <!-- Structured Data for Google Search -->
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -56,22 +48,24 @@
               "https://alt-info.itch.io/midnight-paradox",
               "https://midnight-paradox.en.uptodown.com/android"
             ]
-          }          
+        }
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+
     <style>
-             * {
+        * {
             padding: 0;
             margin: 0;
             box-sizing: border-box;
-            }
-            *::selection {
+        }
+        *::selection {
             background-color: #3DDC84;
             color: rgb(255, 255, 255);
-            }
-        body,html {
+        }
+        body, html {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #121212;
             color: white;
             margin: 0;
             padding: 20px;
@@ -83,24 +77,61 @@
             scroll-behavior: smooth;
             position: relative;
         }
+        body {
+            flex-direction: column;
+            background-color: #121212;
+        }
+
+        #tsparticles ,#tsparticles1{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            top: 0;
+            left: 0;
+        }
+        #tsparticles1{
+          z-index: 1;
+        }
+
+        .moon {
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(to right, #ffffff 50%, #000000 50%);
+            border-radius: 50%;
+            box-shadow: 0 0 60px 20px rgba(255,255,255,0.25);
+            z-index: 6;
+        }
+        #mainContainer{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .logoimg{
+            width: 150px;
+            object-fit: contain;
+            position: absolute;
+            top: 1%;
+            left: 1%;
+            z-index: 99;
+        }
         .container {
             max-width: 600px;
-            margin: auto;
+            /* margin: auto; */
             padding: 20px;
             background: #1e1e1e;
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-            position: absolute;
-            bottom: 15%;
-        }
-        .game-banner {
-            width: 70%;
-            height: 70%;
-            position: absolute;
-            /* z-index: -1; */
-            top: 0;
-            margin: 50px;
-            border-radius: 100px;
+            z-index: 2;
+            border-bottom: 5px solid white;
         }
         .download-btn {
             display: flex;
@@ -114,6 +145,7 @@
             font-weight: bold;
             color: white;
             border-radius: 5px;
+            background-color: #3DDC84;
             outline-offset: 2px;
             outline: 1px solid white;
         }
@@ -123,41 +155,169 @@
             fill: #ffffff; 
         }
 
-        .android { background-color: #3DDC84; }
         .download-btn:hover { opacity: 0.8; }
-        #imgContainer{
-            width: 100%;
-            height: 100%;
+        #rightflot{
+          width: 50%;
+          height: 100%;
+          background-color: rgb(255, 255, 255);
+          position: absolute;
+          right: 0;
+          z-index: -1;
         }
-        #imgContainer img{
-            width: 150px;
-            object-fit: contain;
-            z-index: 2;
-            position: absolute;
-            top: 2%;
-            left: 2%;
+        .AppImg{
+          width: 25%;
+          object-fit: contain;
+          border-radius: 50%;
+          margin-top: 3%;
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+          z-index: 3;
+          border: 5px solid white;
         }
-        #middlep{
-            width: 100%;
-            height: 100%;
-            background-color: #ffffff;
+        @media (max-width: 1020px) {
+          .AppImg{
+            max-width: 350px;
+            width: auto;
+          }
+        }
+        @media (max-width: 700px) {
+          .container{
+            margin-left: 2%;
+            margin-right: 2%;
+          }
+        }
+        @media (max-width: 550px) {
+          .download-btn {
+            font-size: 18px;
+        }
+        .logoimg{
+          width: 100px;
+        }
+        }
+        @media (max-width: 430px) {
+          .AppImg{
+            margin: 4%;
+          }
+          .download-btn {
+            font-size:5vw;
+            text-wrap: nowrap;
+        }
+        .container{
+         margin: 0;
+          }
         }
     </style>
 </head>
 <body>
-    <!-- <img src="lod.png" alt="Game Banner" class="game-banner"> -->
-    <div id="imgContainer">
-        <img src="logo.png" alt="logo" class="logo">
+    <!-- Star Particles Animation -->
+    <div id="tsparticles"></div>
+    <div id="tsparticles1"></div>
+    <div class="moon"></div>
+    <div id="mainContainer">
+        <img src="logo.png" alt="logo" class="logoimg">
+        <img src="app.png" alt="" class="AppImg">
+        <div class="container">
+            <h1>Midnight Paradox</h1>
+            <p>Download now and start playing the action-adventure Zombie Survival Horror Game!</p>
+            <a href="https://download1655.mediafire.com/4o1ne569zm4gwcizdUcpMyd2Eo4QDPyhLahBGW73HfYNCYWBPPww-LatHTW1ukvvLCrB6l2fTe6ZgP-FaJmsA8GSGnLfS46ipZt9BoXg2rjpHl0As4vPe8XWDAC2MH0e-tx3DqyNRzwQVgHvxAaizfIRjxHZaM94pZ4bk0eM4E2Clg/1jmq2j86xihc6ef/Midnight+Paradox.apk" class="download-btn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M420.6 301.9a24 24 0 1 1 24-24 24 24 0 0 1 -24 24m-265.1 0a24 24 0 1 1 24-24 24 24 0 0 1 -24 24m273.7-144.5 47.9-83a10 10 0 1 0 -17.3-10h0l-48.5 84.1a301.3 301.3 0 0 0 -246.6 0L116.2 64.5a10 10 0 1 0 -17.3 10h0l47.9 83C64.5 202.2 8.2 285.6 0 384H576c-8.2-98.5-64.5-181.8-146.9-226.6"/></svg>Download APK for Android</a>
+        </div>
+       <div id="rightflot">
     </div>
-    <div class="container">
-        <h1>Midnight Paradox</h1>
-        <p>Download now and start playing the action-adventure Zombie Survival Horror Game!</p>
 
-        <!-- APK Download (Auto-download when clicked) -->
-        <a href="https://download1655.mediafire.com/4o1ne569zm4gwcizdUcpMyd2Eo4QDPyhLahBGW73HfYNCYWBPPww-LatHTW1ukvvLCrB6l2fTe6ZgP-FaJmsA8GSGnLfS46ipZt9BoXg2rjpHl0As4vPe8XWDAC2MH0e-tx3DqyNRzwQVgHvxAaizfIRjxHZaM94pZ4bk0eM4E2Clg/1jmq2j86xihc6ef/Midnight+Paradox.apk" class="download-btn android"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M420.6 301.9a24 24 0 1 1 24-24 24 24 0 0 1 -24 24m-265.1 0a24 24 0 1 1 24-24 24 24 0 0 1 -24 24m273.7-144.5 47.9-83a10 10 0 1 0 -17.3-10h0l-48.5 84.1a301.3 301.3 0 0 0 -246.6 0L116.2 64.5a10 10 0 1 0 -17.3 10h0l47.9 83C64.5 202.2 8.2 285.6 0 384H576c-8.2-98.5-64.5-181.8-146.9-226.6"/></svg>Download APK for Android</a>
-    </div>
-    <div id="middlep">
+    <!-- Initialize Star Particles -->
+    <script>
+    tsParticles.load("tsparticles", {
+      background: { color: { value: "#121212" } },
+      particles: {
+        number: { value: 80 },
+        color: { value: "#ffffff" },
+        shape: { type: "star" },
+        opacity: {
+          value: 1,
+          random: true,
+          animation: {
+            enable: true,
+            speed: 0.5,
+            minimumValue: 0.3,
+            sync: false
+          }
+        },
+        size: {
+          value: { min: 1, max: 3 },
+          animation: {
+            enable: true,
+            speed: 2,
+            minimumValue: 0.5,
+            sync: false
+          }
+        },
+        move: {
+          enable: true,
+          speed: 0.6,
+          direction: "none",
+          random: true,
+          straight: false,
+          outModes: { default: "out" },
+          attract: { enable: false }
+        }
+      },
+      interactivity: {
+        events: {
+          onHover: { enable: true, mode: "bubble" },
+          resize: true
+        },
+        modes: {
+          bubble: {
+            distance: 100,
+            duration: 2,
+            size: 5,
+            opacity: 1
+          }
+        }
+      },
+      detectRetina: true
+    });
 
-    </div>
+    tsParticles.load("tsparticles1", {
+        background: { color: { value: "transparent" } },
+        particles: {
+            number: { value: 80 },
+            color: { value: "#000000" },
+            shape: { type: "star" },
+            opacity: {
+                value: 1,
+                random: true,
+                animation: {
+                    enable: true,
+                    speed: 0.5,
+                    minimumValue: 0.3,
+                    sync: false
+                }
+            },
+            size: {
+                value: { min: 1, max: 3 },
+                animation: {
+                    enable: true,
+                    speed: 2,
+                    minimumValue: 0.5,
+                    sync: false
+                }
+            },
+            move: {
+                enable: true,
+                speed: 0.6,
+                direction: "none",
+                random: true,
+                straight: false,
+                outModes: { default: "out" },
+                attract: { enable: false }
+            }
+        },
+        interactivity: { events: { resize: true } },
+        detectRetina: true
+    });
+    </script>
 </body>
 </html>
+
+
