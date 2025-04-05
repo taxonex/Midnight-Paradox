@@ -128,14 +128,18 @@
             z-index: 99;
         }
         .container {
-            max-width: 600px;
-            /* margin: auto; */
-            padding: 20px;
-            background: #1e1e1e;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-            z-index: 2;
-            border-bottom: 5px solid white;
+          width: 90%;
+          max-width: 600px;
+          padding: 20px;
+          background: #1e1e1e;
+          border-radius: 10px;
+          border: 1px solid #3DDC84;
+          box-shadow: 0 0 20px rgba(61, 220, 132, 0.3);
+          transition: box-shadow 0.3s ease-in-out;
+          z-index: 2;
+        }
+        .container:hover {
+          box-shadow: 0 0 30px rgba(61, 220, 132, 0.5);
         }
         .download-btn {
             display: flex;
